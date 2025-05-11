@@ -8,23 +8,25 @@ void main() {
           title: const Text('我是一个标题'),
           backgroundColor: Colors.grey,
         ),
-        body: MyGridExtent(),
+        body: MyGridDefault(),
       ),
     ),
   );
 }
 
-class MyGridExtent extends StatelessWidget {
-  const MyGridExtent({super.key});
+class MyGridDefault extends StatelessWidget {
+  const MyGridDefault({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GridView.extent(
-      maxCrossAxisExtent: 100, // 最大宽度, 超过这个宽度就会换行
-      mainAxisSpacing: 10, // 每行之间的间隔距离
-      crossAxisSpacing: 10, // 每列之间的间隔距离
-      childAspectRatio: 4 / 3, // 子组件的宽度和高度的比值
-
+    return GridView(
+      // gridDelegate 用于控制子组件的布局方式
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        mainAxisSpacing: 10, // 每行之间的间隔距离
+        crossAxisCount: 3, // 一行放几个子组件
+        crossAxisSpacing: 10, // 每列之间的间隔距离
+        childAspectRatio: 4 / 3, // 子组件的宽度和高度的比值
+      ),
       children: [
         Container(
           color: Colors.red,
